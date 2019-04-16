@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    image: frojd/wagtial-text-analysis-web
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "8087:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=mysite.settings.dev
+    env_file: web.env
