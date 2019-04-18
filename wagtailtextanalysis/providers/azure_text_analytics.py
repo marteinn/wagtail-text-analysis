@@ -31,7 +31,7 @@ def get_key_phrases_impl(json_data):
 
     domain = get_api_domain(settings.AZURE_TEXT_ANALYTICS_REGION)
     response = requests.post(
-        f'{domain}/text/analytics/v2.0/keyPhrases',
+        "{}/text/analytics/v2.0/keyPhrases".format(domain),
         headers=headers,
         json=json_data,
     )
@@ -41,4 +41,4 @@ def get_key_phrases_impl(json_data):
 
 
 def get_api_domain(region):
-    return f'https://{region}.api.cognitive.microsoft.com'
+    return "https://{}.api.cognitive.microsoft.com".format(region)
