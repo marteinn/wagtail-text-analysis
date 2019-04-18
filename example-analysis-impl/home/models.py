@@ -10,6 +10,7 @@ from taggit.models import TaggedItemBase
 from wagtailtextanalysis.text_analysis import (
     TextAnalysis,
     KeyPhrasesField,
+    SentimentField,
 )
 
 
@@ -42,3 +43,17 @@ class HomePage(Page, TextAnalysis):
         revision = self.get_latest_revision()
         revision.content_json = page_revision.to_json()
         revision.save()
+
+
+class Comment(models.Model, TextAnalysis):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    sentiment = models.DecimalField(max_digits=7, decimal_places=6, default=0)
+
+    text_analysis_fields = [
+        SentimentField('title'),
+        SentimentField('wysiwyg'),
+    ]
+
+    def update_sentiment(self, sentiment):
+        self.sentiment = sentiment
