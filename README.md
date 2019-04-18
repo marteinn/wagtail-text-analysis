@@ -8,6 +8,7 @@ Detect key phrases from your Wagtail content using powerful ML Apis.
 ## Features
 
 - Key phrase generation using Azure Text Analytics
+- Text sentiment using Azure Text Analytics
 
 
 ## Supported providers

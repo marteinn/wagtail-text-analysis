@@ -9,6 +9,10 @@ class KeyPhrasesField(index.SearchField):
     pass
 
 
+class SentimentField(index.SearchField):
+    pass
+
+
 class TextAnalysis:
     text_analysis_fields = []
 
@@ -32,15 +36,26 @@ class TextAnalysis:
     def update_key_phrases(self, phrases):
         raise NotImplementedError()
 
+    def update_sentiment(self, sentiment):
+        raise NotImplementedError()
+
 
 def analyse(instance):
     key_phrases_text = instance.get_text_to_analyse(KeyPhrasesField)
     if key_phrases_text:
         phrases = azure_text_analytics.get_key_phrases(
             key_phrases_text,
-            identifier=instance.pk,
+            identifier=1,
         )
         instance.update_key_phrases(phrases)
+
+    sentiment_text = instance.get_text_to_analyse(SentimentField)
+    if sentiment_text:
+        sentiment = azure_text_analytics.get_sentiment(
+            sentiment_text,
+            identifier=1,
+        )
+        instance.update_sentiment(sentiment)
 
 
 def get_text_analysis_models():
