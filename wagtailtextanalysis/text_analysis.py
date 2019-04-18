@@ -35,13 +35,12 @@ class TextAnalysis:
 
 def analyse(instance):
     key_phrases_text = instance.get_text_to_analyse(KeyPhrasesField)
-    if text:
+    if key_phrases_text:
         phrases = azure_text_analytics.get_key_phrases(
             key_phrases_text,
             identifier=instance.pk,
         )
         instance.update_key_phrases(phrases)
-
 
 
 def get_text_analysis_models():
