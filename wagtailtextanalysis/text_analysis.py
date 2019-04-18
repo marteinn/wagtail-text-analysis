@@ -25,6 +25,7 @@ class TextAnalysis:
         if not len(values):
             return None
 
+        values = filter(lambda x: x, values)
         text = "\n".join(values)
         return strip_tags(text)
 
