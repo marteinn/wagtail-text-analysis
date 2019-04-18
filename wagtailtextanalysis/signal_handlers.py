@@ -12,7 +12,5 @@ def register_signal_handlers():
         pre_save.connect(
             pre_save_signal_handler,
             sender=model,
-            dispatch_uid="wagtailtextanalysis.pre_save.{}".format(
-                model.__module__,
-            ),
+            dispatch_uid="wagtailtextanalysis.pre_save.{}".format(model.__module__),
         )

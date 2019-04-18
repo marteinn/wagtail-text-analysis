@@ -10,9 +10,7 @@ class KeyPhrasesTest(TestCase):
         AZURE_TEXT_ANALYTICS_API_KEY="random-key",
         AZURE_TEXT_ANALYTICS_REGION="northeurope",
     )
-    @mock.patch(
-        "wagtailtextanalysis.providers.azure_text_analytics.get_key_phrases",
-    )
+    @mock.patch("wagtailtextanalysis.providers.azure_text_analytics.get_key_phrases")
     def test_page_retrives_phrases(self, test_patch):
         test_patch.return_value = ["horses", "dogs"]
 

@@ -10,4 +10,4 @@ __author__ = "Martin Sandström"
 __license__ = "MIT"
 __copyright__ = "Copyright 2019 Martin Sandström"
 
-default_app_config = 'wagtailtextanalysis.apps.TextAnslysisAppConfig'
+default_app_config = "wagtailtextanalysis.apps.TextAnslysisAppConfig"

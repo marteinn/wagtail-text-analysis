@@ -10,9 +10,7 @@ class SentimentTest(TestCase):
         AZURE_TEXT_ANALYTICS_API_KEY="random-key",
         AZURE_TEXT_ANALYTICS_REGION="northeurope",
     )
-    @mock.patch(
-        "wagtailtextanalysis.providers.azure_text_analytics.get_sentiment",
-    )
+    @mock.patch("wagtailtextanalysis.providers.azure_text_analytics.get_sentiment")
     def test_page_retrives_phrases(self, test_patch):
         test_patch.return_value = 1
 

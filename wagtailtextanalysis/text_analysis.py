@@ -18,8 +18,7 @@ class TextAnalysis:
 
     def get_text_to_analyse(self, field_type):
         fields = filter(
-            lambda field: isinstance(field, field_type),
-            self.text_analysis_fields,
+            lambda field: isinstance(field, field_type), self.text_analysis_fields
         )
         fields = list(fields)
         if not len(fields):
@@ -43,23 +42,18 @@ class TextAnalysis:
 def analyse(instance):
     key_phrases_text = instance.get_text_to_analyse(KeyPhrasesField)
     if key_phrases_text:
-        phrases = azure_text_analytics.get_key_phrases(
-            key_phrases_text,
-            identifier=1,
-        )
+        phrases = azure_text_analytics.get_key_phrases(key_phrases_text, identifier=1)
         instance.update_key_phrases(phrases)
 
     sentiment_text = instance.get_text_to_analyse(SentimentField)
     if sentiment_text:
-        sentiment = azure_text_analytics.get_sentiment(
-            sentiment_text,
-            identifier=1,
-        )
+        sentiment = azure_text_analytics.get_sentiment(sentiment_text, identifier=1)
         instance.update_sentiment(sentiment)
 
 
 def get_text_analysis_models():
     return [
-        model for model in apps.get_models()
+        model
+        for model in apps.get_models()
         if issubclass(model, TextAnalysis) and not model._meta.abstract
     ]

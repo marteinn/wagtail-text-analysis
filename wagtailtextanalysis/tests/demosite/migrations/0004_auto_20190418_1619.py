@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('demosite', '0003_comment'),
-    ]
+    dependencies = [("demosite", "0003_comment")]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='sentiment',
+            model_name="comment",
+            name="sentiment",
             field=models.DecimalField(decimal_places=6, default=0, max_digits=7),
-        ),
+        )
     ]

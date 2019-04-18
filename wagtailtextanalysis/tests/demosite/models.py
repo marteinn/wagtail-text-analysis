@@ -11,20 +11,15 @@ from wagtailtextanalysis.text_analysis import (
 
 
 class ArticlePage(Page, TextAnalysis):
-    wysiwyg = models.TextField(
-        blank=True, null=True, verbose_name=_("Wysiwyg"),
-    )
+    wysiwyg = models.TextField(blank=True, null=True, verbose_name=_("Wysiwyg"))
     key_phrases = models.TextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("wysiwyg"),
-        FieldPanel('key_phrases'),
+        FieldPanel("key_phrases"),
     ]
 
-    text_analysis_fields = [
-        KeyPhrasesField('title'),
-        KeyPhrasesField('wysiwyg'),
-    ]
+    text_analysis_fields = [KeyPhrasesField("title"), KeyPhrasesField("wysiwyg")]
 
     def update_key_phrases(self, phrases):
         self.key_phrases = " ".join(phrases)
@@ -35,10 +30,7 @@ class Comment(models.Model, TextAnalysis):
     content = models.TextField()
     sentiment = models.DecimalField(max_digits=7, decimal_places=6, default=0)
 
-    text_analysis_fields = [
-        SentimentField('title'),
-        SentimentField('wysiwyg'),
-    ]
+    text_analysis_fields = [SentimentField("title"), SentimentField("wysiwyg")]
 
     def update_sentiment(self, sentiment):
         self.sentiment = sentiment
