@@ -55,9 +55,9 @@ def get_key_phrases_impl(json_data):
     }
 
     domain = get_api_domain(settings.AZURE_TEXT_ANALYTICS_REGION)
-    response = requests.post(
-        f"{domain}/text/analytics/v2.0/keyPhrases", headers=headers, json=json_data
-    )
+    url = "{}/text/analytics/v2.0/sentiment".format(domain)
+
+    response = requests.post(url, headers=headers, json=json_data)
 
     response.raise_for_status()
     return response.json()
