@@ -64,4 +64,4 @@ def get_key_phrases_impl(json_data):
 
 
 def get_api_domain(region):
-    return f"https://{region}.api.cognitive.microsoft.com"
+    return "https://{}.api.cognitive.microsoft.com".format(region)
