@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/marteinn/wagtail-text-analysis.svg?branch=develop)](https://travis-ci.org/marteinn/wagtail-text-analysis)
+
 # Wagtail Text Analysis
 
 Detect key phrases from your Wagtail content using powerful ML Apis.
