@@ -44,7 +44,7 @@ This is a guide to help you to implement `key phrases` using the Text Analytics 
     ```
 
 
-## Connect your Wagtail page with wagtail-text-analysis with autogenerate key phrases
+## Connect your Wagtail page with wagtail-text-analysis and let it autogenerate key phrases
 
 - Import `wagtailtextanalysis.text_analysis.TextAnalysis` and extend your page with it
 
@@ -71,7 +71,6 @@ This is a guide to help you to implement `key phrases` using the Text Analytics 
 - Now finally we add a method that retrives the key phrases
 
     ```python
-
     class HomePage(Page, TextAnalysis):
         ...
 
@@ -79,7 +78,20 @@ This is a guide to help you to implement `key phrases` using the Text Analytics 
             print(phrases)  # Example: ["dog", "forest", "sunny stockholm"]
     ```
 
-- From here you can either choose to save the fields to your model or pass them on to elasticsearch
+- From here you can either choose to save the fields to your model or pass them on to elasticsearch, here we use a field called tags to store the values
+
+    ```python
+    from django.contrib.postgres.fields import ArrayField
+    from django.db import models
+
+    class HomePage(Page, TextAnalysis):
+        ...
+        tags = ArrayField(models.CharField(max_length=200), blank=True)
+
+        def update_key_phrases(self, phrases):
+            self.tags = phrases
+            self.save()
+    ```
 
 - Full example
 
@@ -104,10 +116,11 @@ This is a guide to help you to implement `key phrases` using the Text Analytics 
         ]
 
         def update_key_phrases(self, phrases):
-            print(phrases)
+            self.tags = phrases
+            self.save()
     ```
 
 
 ## Troubleshooting
 
-If you have any problem getting your project up and running. Please let us know by filing an issue and we will help you out.
+If you have any problem getting the library up and running, please let me know by filing an issue and we will help you out.
