@@ -2,7 +2,7 @@
 
 # Wagtail Text Analysis
 
-Detect key phrases from your Wagtail content using powerful ML Apis.
+Detect key phrases and sentiment from your Wagtail content using powerful ML Apis.
 
 
 ## Features
