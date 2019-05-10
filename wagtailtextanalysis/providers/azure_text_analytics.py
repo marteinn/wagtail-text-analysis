@@ -2,6 +2,14 @@ from django.conf import settings
 from django.utils.translation import get_language
 import requests
 
+from wagtailtextanalysis.exceptions import WagtailTextAnalysisException
+
+
+def prepare_response_json(json_response):
+    if json_response.get('errors'):
+        raise WagtailTextAnalysisException(repr(json_response['errors']))
+    return json_response
+
 
 def get_sentiment(text, identifier):
     lang_and_country_code = get_language()
@@ -30,7 +38,7 @@ def get_sentiment_impl(json_data):
     response = requests.post(url, headers=headers, json=json_data)
 
     response.raise_for_status()
-    return response.json()
+    return prepare_response_json(response.json())
 
 
 def get_key_phrases(text, identifier):
@@ -60,7 +68,7 @@ def get_key_phrases_impl(json_data):
     response = requests.post(url, headers=headers, json=json_data)
 
     response.raise_for_status()
-    return response.json()
+    return prepare_response_json(response.json())
 
 
 def get_api_domain(region):
