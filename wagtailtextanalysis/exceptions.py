@@ -1,0 +1,2 @@
+class WagtailTextAnalysisException(Exception):
+    pass
