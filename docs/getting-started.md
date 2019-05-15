@@ -26,7 +26,7 @@ This is a guide to help you to implement `key phrases` using the Text Analytics 
 
 ## Installing wagtail-text-analysis
 
-- Its a regular pypi package so just run `pip install wagtail-text-analysis`
+- Its a regular pypi package so just run `pip install wagtailtextanalysis`
 - Add it to installed apps in your django settings
 
     ```python
